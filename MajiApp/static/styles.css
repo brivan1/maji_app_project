@@ -1,0 +1,47 @@
+body{
+    margin: 0 auto;
+}
+.container{
+    width: 80%;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+.bar{
+    background-color: black;
+    width: 20px;
+    height: 2px;
+    margin: 5px;
+}
+header{
+    border-radius: 10px;
+    background: rgba(4, 218, 136, 0.637);
+    text-align: center;
+    padding: 0.5em 0;
+    color: white;
+}
+.navbar{
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background: black;
+}
+button{
+    background-color: rgb(55, 74, 247);
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+    border: 0px solid;
+    padding: 0.5em;
+}
+.menu{
+    background: rgb(55, 74, 247);
+    border-radius: 5px;
+}
+.blog{
+    color: black;
+    padding: 0em;
+    margin: 0;
+    background-color: rgb(81, 81, 238);
+    border-radius: 10px;
+}
