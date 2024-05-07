@@ -1,8 +1,19 @@
-from flask import Flask, request, render_template, session, login_required, logout_user
+from flask import Flask, request, render_template, session
+from flask import flask_login, LoginManager
+from flask import flask_sqlalchemy, SQLAlchemy
+
 
 app = Flask(__name__)
-app.secret_key = "majiapp"
+app.secret_key = "that's m3"
+db = SQLAlchemy()
 
+#login manager configuration
+login_manager = LoginManager()
+login_manager.init_app(app)
+
+@login_manager.user_loader
+def load_user(user_id):
+    return User.query.get(int(user_id))
 
 # @app.route('/')
 # def hello():
@@ -30,11 +41,11 @@ def login():
 
     return render_template('login.html')
 
-@app.route('/logout')
-@login_required
+# @app.route('/logout')
+# @login_required
 
-def logout():
-    logout_user()
-    return redirect(url_for('login'))
+# def logout():
+#     logout_user()
+#     return redirect(url_for('login'))
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
