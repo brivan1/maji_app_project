@@ -1,12 +1,5 @@
-import flask
 from flask import Flask, request, render_template, session, redirect, url_for
 import MySQLdb
-
-
-# user = "bunix"
-# password = "B@Unix"
-# host = "localhost"
-# dbname = "MajiApp_db"
 
 
 app = Flask(__name__)
@@ -17,17 +10,20 @@ app.config['MYSQL_PASSWORD'] = 'B@Unix'
 app.config['MYSQL_DB'] = 'MajiApp_db'
 
 
+
 #login manager configuration
 # login_manager = LoginManager()
 # login_manager.init_app(app)
 
 # @login_manager.user_loader
-# def load_user(user_id):
-    # return (int(user_id))
+# def load_user(username, password):
+#     return sys.User('username', 'password', username, password)
+    # (int(user_id))
 
 # @app.route('/')
 # def hello():
 #     return render_template("login.html")
+
 
 
 @app.route('/login', methods=['GET','POST'])
@@ -35,9 +31,9 @@ def login():
     if request.method == "POST" and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        cursor = MySQLdb.connection.cursor()
+        cursor = MySQLdb.connect(host=app.config['MYSQL_HOST'], user=app.config['MYSQL_USER'], password=app.config['MYSQL_PASSWORD'], db=app.config['MYSQL_DB']).cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("SELECT * FROM User_main WHERE username = %s AND password = %s", (username, password))
-        account = cursor.fetchone()
+        account = cursor.fetchall()
         if account:
             session['logged_in'] = True
             session['username'] = username
@@ -56,7 +52,7 @@ def login():
         #     else:
         #         return render_template('login.html',info='invalid password')
 
-    # return render_template('login.html')
+    return render_template('login.html')
 
 @app.route('/logout')
 def logout():
