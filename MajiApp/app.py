@@ -2,7 +2,7 @@ from flask import Flask, request, render_template, session, redirect, url_for
 import MySQLdb
 
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder='templates', static_folder='static')
 app.secret_key = "MajiApp_secret_key"
 app.config['MySQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'bunix'
