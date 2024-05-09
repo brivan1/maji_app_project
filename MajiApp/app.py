@@ -22,7 +22,7 @@ app.config['MYSQL_DB'] = 'MajiApp_db'
 
 @app.route('/form')
 def form():
-    return render_template("login.html")
+    return render_template('login.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
