@@ -20,14 +20,15 @@ app.config['MYSQL_DB'] = 'MajiApp_db'
 #     return sys.User('username', 'password', username, password)
     # (int(user_id))
 
-# @app.route('/')
-# def hello():
-#     return render_template("login.html")
-
-
+@app.route('/form')
+def form():
+    return render_template("login.html")
 
 @app.route('/login', methods=['GET','POST'])
 def login():
+    if request.method == "GET":
+        return render_template('login.html')
+    
     if request.method == "POST" and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
