@@ -19,24 +19,27 @@ app.config['MYSQL_DB'] = 'MajiApp_db'
 # def load_user(username, password):
 #     return sys.User('username', 'password', username, password)
     # (int(user_id))
+    
+@app.route('/')
 
-@app.route('/form')
-def form():
-    return render_template('login.html')
+# @app.route('/form')
+# def form():
+#     return render_template('login.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
-    if request.method == "GET":
-        return render_template('login.html')
+    # if request.method == "GET":
+    #     return render_template('login.html')
     
     if request.method == "POST" and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
         cursor = MySQLdb.connect(host=app.config['MYSQL_HOST'], user=app.config['MYSQL_USER'], password=app.config['MYSQL_PASSWORD'], db=app.config['MYSQL_DB']).cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("SELECT * FROM User_main WHERE username = %s AND password = %s", (username, password))
-        account = cursor.fetchall()
+        account = cursor.fetchone()
         if account:
             session['logged_in'] = True
+            session['id'] = account['id']
             session['username'] = username
             return render_template('index.html')
         else:
