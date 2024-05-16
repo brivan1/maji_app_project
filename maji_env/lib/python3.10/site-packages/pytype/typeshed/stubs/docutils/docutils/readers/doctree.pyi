@@ -1,0 +1,3 @@
+from docutils import readers
+
+class Reader(readers.ReReader): ...

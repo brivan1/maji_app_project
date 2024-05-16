@@ -1,5 +1,5 @@
 import cmd
-import MySQLdb
+from flask import MySQLdb
 #define class User
 
 class User():
