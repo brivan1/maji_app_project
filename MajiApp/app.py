@@ -1,6 +1,7 @@
 from flask import Flask, request, render_template, session, redirect
 # from majiapp_main import Storage
 # from flask_mysqlbd import MySQLdb
+import MySQLdb.cursors
 from MySQLdb.cursors import DictCursor
 from flask_mysqldb import MySQL
 
@@ -20,23 +21,21 @@ mysql = MySQL(app)
 #     return "hello"
 # @app.route('/login',methods=['GET','POST'])
 @app.route('/')
-def index():
-    return render_template('index.html')
-
+# def index():
+#     return render_template('index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():
     
-
     if request.method == "POST" and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password'] 
-        cursor = mysql.connection.cursor(DictCursor)
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute("SELECT * FROM User_maji WHERE username = %s AND password = %s", (username, password))
         user = cursor.fetchone()
 
         if user:
-            session['logged_in'] = True
+            session['loggedin'] = True
             session['username'] = ['username']
             session['password'] = ['password']
             return redirect('/dashboard.html', info="welcome to MajiApp")
@@ -45,7 +44,14 @@ def login():
         
     
     return render_template('login.html')
-
+@app.route('/dashboard')
+def dashboard(username):
+    if session['username']:
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute("SELECT * FROM User_maji WHERE username = %s AND password = %s", (session[username], ))
+        user = cursor.fetchone()
+        return render_template('dashboard.html', user=user)
+    return redirect('/login.html')
 # @app.route('/logout')
 # def logout():
     
