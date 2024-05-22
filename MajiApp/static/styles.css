@@ -17,16 +17,16 @@ body{
 }
 header{
     
-    background: rgb(247, 248, 248);
     text-align: center;
-    padding: 1em;
+    padding: 1em 0;
     color: rgb(9, 35, 182);
 }
 .upper{
-    background-color: #F3EED9;
+    background-color: #ece1b5;
     padding: 150px 0;
     text-align: center;
     color: #0d09cc;
+    margin-top: 15px;
 }
 .logo_txt{
     font-size: 3.5rem;
@@ -45,6 +45,10 @@ header{
     align-items: center;
     /* background: rgb(155, 160, 157); */
     padding: 0px;
+    z-index: 1;
+    box-shadow: #4b6862 5px 5px 5px;
+    border-radius: 5px;
+    position: fixed;
 }
 button{
     background-color: rgb(55, 74, 247);
@@ -61,7 +65,7 @@ button{
 .blog_wr, .blog_wrp{
     color: rgb(253, 252, 252);
     margin: 0;
-    background-color: rgb(16, 89, 199);
+    background-color: rgb(36, 140, 209);
     
 }
 .row{
@@ -95,4 +99,16 @@ section{
 }
 img{
     width: 100%;
+    box-shadow: 10px 10px 10px #222C2A;
+    border-radius: 5px;
+}
+.cover_img{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin-top: 100px;
+    border-radius: 50px;
+    box-shadow: #222C2A 20px 20px 20px;
 }

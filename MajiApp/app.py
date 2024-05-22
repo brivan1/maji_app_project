@@ -6,7 +6,7 @@ from MySQLdb.cursors import DictCursor
 from flask_mysqldb import MySQL
 
 
-app = Flask(__name__, template_folder='templates', static_folder='static')
+app = Flask(__name__, template_folder='templates', static_folder='../MajiApp/static')
 app.secret_key = "MajiApp_secret_key"
 
 app.config['MySQL_HOST'] = 'localhost'
@@ -21,8 +21,8 @@ mysql = MySQL(app)
 #     return "hello"
 # @app.route('/login',methods=['GET','POST'])
 @app.route('/')
-# def index():
-#     return render_template('index.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/login', methods=['GET','POST'])
 def login():

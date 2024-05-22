@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MajiApp</title>
-    <link rel="stylesheet" href="/MajiApp/static/styles.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='styles.css')}}">
+
 </head>
 <body>
     
         <header>
-            <div class="container">
+            <div class="">
                 <div class="navbar">
                     <div class="menu">
                         <div class="bar"></div>
@@ -25,6 +26,7 @@
             <div class="container">
                 <h1 class="logo_txt">MajiApp</h1>
             <h2 class="mantra">At your hour of need</h2>
+            <img src="{{ url_for('static', filename= 'images/aiwatertap.jpg') }}" class="cover_img" alt="aiwatertap">
             </div>
         </section>
         <section class="blog_wr">
@@ -40,7 +42,7 @@
                     Quisquam, quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </div>
                 <div class="wr">
-                    <img src="/MajiApp/static/images/selective-focus-grunge-rusty-faucet-rural-area.jpg" alt="tapwater" width="300" height="200">
+                    <img src="{{ url_for('static', filename='images/selective-focus-grunge-rusty-faucet-rural-area.jpg')}}" alt="tapwater" width="300" height="200">
                 </div>
         </section>
         <section class="blog_wrp">
@@ -56,7 +58,7 @@
                     Quisquam, quaerat. Lorem ipsum dolor sit amet consectetur adipisicing elit.
                 </div>
                 <div class="wrp">
-                    <img src="/MajiApp/static/images/view-realistic-hands-touching-clear-flowing-water.jpg" alt="homewater" width="300" height="200">
+                    <img src="{{url_for('static', filename='/images/view-realistic-hands-touching-clear-flowing-water.jpg')}}" alt="homewater" width="300" height="200">
                 </div>
             </div>
         </section>

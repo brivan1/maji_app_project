@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/MajiApp/static/dashbrd.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='dashbrd.css')}}">
     <title>Document</title>
 </head>
 <body>
     <section class="regions">
         <div class="container row">
             <div class="dropdown">
+                <h1>Select Your Region</h1>
                 <button class="dropdwn">REGIONS</button>
                 <div class="dropdown-content">
                     <a href="/MajiApp/templates/RegionA.html">Region A</a>
