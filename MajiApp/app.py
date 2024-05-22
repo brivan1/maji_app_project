@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect
+from flask import Flask, request, render_template, session, redirect, url_for
 # from majiapp_main import Storage
 # from flask_mysqlbd import MySQLdb
 import MySQLdb.cursors
@@ -38,17 +38,17 @@ def login():
             session['loggedin'] = True
             session['username'] = ['username']
             session['password'] = ['password']
-            return redirect('/dashboard.html', info="welcome to MajiApp")
+            return redirect('/dashboard')
         else:
-            return render_template('login.html', info="invalid password or username!")
+            return render_template('login.html')
         
     
     return render_template('login.html')
 @app.route('/dashboard')
-def dashboard(username):
+def dashboard():
     if session['username']:
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute("SELECT * FROM User_maji WHERE username = %s AND password = %s", (session[username], ))
+        cursor.execute("SELECT * FROM User_maji WHERE username = %s", (session['username'], ))
         user = cursor.fetchone()
         return render_template('dashboard.html', user=user)
     return redirect('/login.html')
