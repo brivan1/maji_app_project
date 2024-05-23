@@ -15,7 +15,6 @@ app.config['MYSQL_PASSWORD'] = 'B@Unix'
 app.config['MYSQL_DB'] = 'MajiApp_db'
 
 mysql = MySQL(app)
-    
 # @app.route('/')
 # def index():
 #     return "hello"
