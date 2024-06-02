@@ -42,4 +42,30 @@ class UserMajiAppCLI(cmd.Cmd):
         self.prompt = "water rationing >>"
         self.intro = "MajiApp Tool"
         
+    def do_add_user(self,arg):
+        args = arg.split()
+        if len(args) != 2:
+            print("Use: add_user <username> <email> <location>")
+            return 
+        username, email, location = args
+        storage.add_user(username, email, location)
+        
+    def do_add_complaints(self, arg):
+        args = arg.split()
+        if len(args) !=2:
+            print("use: add_complaints <username> <message>")
+            return
+        username, message = args
+        storage.add_complaints(username, message)
+        
+    def do_list_users(self, arg):
+        storage.list_users()
+        
+    def do_quit(self, arg):
+        print("exiting")
+        return True
     
+if __name__ == "__main__":
+    storage = Storage()
+    cli = UserMajiAppCLI()
+    cli.cmdloop()
