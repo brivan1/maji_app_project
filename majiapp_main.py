@@ -1,5 +1,5 @@
 import cmd
-
+import MySQLdb
 
 #Define a User class
 class User:
@@ -19,17 +19,52 @@ class Complaints:
 
 class Storage:
     def __init__(self):
+        self.connection = MySQLdb.connect(host='localhost', user= 'MajiApp', password='B@Unix', db='MajiApp_db')
+        self.cursor = self.connection.cursor()
         self.users = []
         
     def add_user(self, username, email, location):
         new_user = User(username, email, location)
         self.users.append(new_user)
+        query = "INSERT INTO User_maji(username, email, location) VALUES (%s, %s, %s)"
+        self.cursor.execute(query(username, email, location))
+        self.connection.commit()
         
     def add_complaints(self, username, message):
         for user in self.users:
             if user.username == username:
                 complaint = Complaints(message)
                 user.add_complaints(complaint)
+                
+                query = "SELECT Field FROM User_maji WHERE username = %s"
+                self.cursor.execute(query, (username))
+                username = self.cursor.fetchone()[0]
+                
+                query = "INSERT INTO Complaints(message, username) VALUES (%s, %s)"
+                self.cursor.execute(query, (message, username))
+                self.connection.commit()
+    
+    def fetch_user(self):
+        users = []
+        
+        query = """
+        SELECT User_maji.username, Complaints.message
+        FROM User_maji
+        LEFT JOIN Complaints ON User_maji.username = Complaints.username
+        """
+        self.cursor.execute(query)
+        curr_user = None
+        for row in self.cursor.fetchall():
+            username, message = row
+            if not curr_user or curr_user.username != username:
+                curr_user = User(username)
+                users.append(curr_user)
+            if message:
+                curr_user.add_complaints(Complaints(message))
+            print(row)
+        return users
+           
+    
     def list_users(self):
         for user in self.users:
             print(f"User:{user.username}")
