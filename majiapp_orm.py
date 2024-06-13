@@ -1,5 +1,6 @@
 import cmd
 from sqlalchemy import Column, Integer, String, ForeignKey 
+from sqlalchemy.orm import relationship
 
 #Define a User class
 class User:
@@ -8,6 +9,7 @@ class User:
     id = Column(Integer, primary_key=True)
     username = Column(String(50))
     email = Column(String(100))
+    
     
     
     '''def __init__(self, username, email, location):

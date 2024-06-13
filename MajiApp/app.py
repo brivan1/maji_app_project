@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, session, redirect, url_for
+from flask import Flask, request, render_template, session, redirect
 # from majiapp_main import Storage
 # from flask_mysqlbd import MySQLdb
 import MySQLdb.cursors
