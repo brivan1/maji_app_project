@@ -19,7 +19,7 @@ class Complaints:
 
 class Storage:
     def __init__(self):
-        self.connection = MySQLdb.connect(host='localhost', user= 'MajiApp', password='B@Unix', db='MajiApp_db')
+        self.connection = MySQLdb.connect(host='localhost', user= 'MajiApp', password='bunix', db='MajiApp_db')
         self.cursor = self.connection.cursor()
         self.users = []
         

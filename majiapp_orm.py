@@ -1,11 +1,12 @@
 import cmd
 from sqlalchemy import Column, Integer, String, ForeignKey, create_engine 
-from sqlalchemy.orm import relationship, sessionmaker, declarative_base
+from sqlalchemy.orm import relationship, sessionmaker
+from sqlalchemy.orm import declarative_base
 
 Base = declarative_base()
 
 #Define a User class
-class User(Base):
+class User():
     
     __tablename__ = 'Orm_user'
     id = Column(Integer, primary_key=True)
@@ -22,7 +23,7 @@ class User(Base):
     def add_complaint(self, complaint):
         self.complaints.append(complaint)
 
-class Complaints(Base):
+class Complaints():
     
     __tablename__ = 'Orm_complaints'
     
@@ -40,7 +41,7 @@ class Complaints(Base):
 class Storage:
     def __init__(self):
         
-        path = 'mysql+pymysql://MajiApp:B@Unix:@localhost:orm_maji'
+        path = 'mysql+pymysql://MajiApp:bunix@localhost/orm_maji'
         self.engine = create_engine(path)
         
         Base.metadata.create_all(self.engine)
