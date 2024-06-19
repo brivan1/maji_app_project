@@ -3,12 +3,14 @@ from sqlalchemy import Column, Integer, String, ForeignKey, create_engine
 from sqlalchemy.orm import relationship, sessionmaker
 from sqlalchemy.orm import declarative_base
 
+
 Base = declarative_base()
 
 #Define a User class
-class User():
+class User(Base):
     
     __tablename__ = 'Orm_user'
+    
     id = Column(Integer, primary_key=True)
     username = Column(String(20))
     email = Column(String(20))
@@ -23,7 +25,7 @@ class User():
     def add_complaint(self, complaint):
         self.complaints.append(complaint)
 
-class Complaints():
+class Complaints(Base):
     
     __tablename__ = 'Orm_complaints'
     
