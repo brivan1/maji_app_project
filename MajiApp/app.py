@@ -23,7 +23,6 @@ mysql = MySQL(app)
 def index():
     return render_template('index.html')
 
-@app.route('/admin')
 @app.route('/login', methods=['GET','POST'])
 def login():
     
@@ -52,6 +51,7 @@ def dashboard():
         user = cursor.fetchone()
         return render_template('dashboard.html', user=user)
     return redirect('/login.html')
+
 # @app.route('/logout')
 # def logout():
     

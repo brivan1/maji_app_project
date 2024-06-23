@@ -4,12 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{url_for('static', filename='login.css')}}">
-    <title>Document</title>
+    <script src="/MajiApp/templates/admin.js"></script>
+    <title>Admin</title>
 </head>
 <body>
   
         <div class="login container">
-                <form action="{{ url_for('login')}}" method="POST">
+                <form action="{{ url_for('admin')}}" method="POST">
                     <div class="username">
                         <label for="username">Username</label>
                         <input type="text" placeholder="username" name="username">
