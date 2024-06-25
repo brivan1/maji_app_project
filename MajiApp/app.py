@@ -4,7 +4,7 @@ from flask import Flask, request, render_template, session, redirect
 import MySQLdb.cursors
 from MySQLdb.cursors import DictCursor
 from flask_mysqldb import MySQL
-
+import json
 
 app = Flask(__name__, template_folder='templates', static_folder='../MajiApp/static')
 app.secret_key = "MajiApp_secret_key"
@@ -23,6 +23,26 @@ mysql = MySQL(app)
 def index():
     return render_template('index.html')
 
+
+@app.route('/admin', methods=['GET','POST'])
+def adminlogin():
+    if request.method == "POST" and 'username' in request.form and 'password' in request.form:
+        username = request.form['username']
+        password = request.form['password'] 
+
+        # Fetch admin credentials from admin.js file
+        with open('admin.js') as f:
+            admin_credentials = json.load(f)
+
+        if username == admin_credentials['username'] and password == admin_credentials['password']:
+            session['loggedin'] = True
+            session['username'] = username
+            session['password'] = password
+            return redirect('/admin_dashboard')
+        else:
+            return render_template('admin.html')
+    
+    return render_template('admin.html')
 @app.route('/login', methods=['GET','POST'])
 def login():
     
