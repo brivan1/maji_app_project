@@ -41,8 +41,8 @@ def adminlogin():
             return redirect('/admin_dashboard')
         else:
             return render_template('admin.html')
-    
     return render_template('admin.html')
+
 @app.route('/login', methods=['GET','POST'])
 def login():
     
