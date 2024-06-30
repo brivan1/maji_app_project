@@ -2,7 +2,7 @@ function adminlogin(event) {
     event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
-        if (username === 'admin' && password === 'adminlogin') {
+        if (username === 'admin' && password === 'adminpass') {
             alert('Login successful!');
         } else {
             alert('Login failed!');

@@ -5,6 +5,7 @@ import MySQLdb.cursors
 from MySQLdb.cursors import DictCursor
 from flask_mysqldb import MySQL
 import json
+from flask import jsonify
 
 app = Flask(__name__, template_folder='templates', static_folder='../MajiApp/static')
 app.secret_key = "MajiApp_secret_key"
